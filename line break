@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Words Cutter</title>
+</head>
+<body>
+    <textarea name="" id="tarea" cols="100" rows="20" placeholder="Enter your text here"></textarea><br><br>
+    <button id="btn" onclick="formatText()">Format Text</button><br><br>
+    <textarea name="" id="result" cols="100" rows="20" readonly></textarea>
+    <textarea name="" id="result2" cols="100" rows="20" readonly></textarea>
+
+    <script>
+        function formatText() {
+            const inputText = document.getElementById("tarea").value;
+            const resultTextArea = document.getElementById("result");
+
+            // Split the input text into words
+            const words = inputText.split(" ");
+
+            let formattedText = "";
+            let line = "";
+
+            for (const word of words) {
+                if (line.length + word.length + 1 <= 100) {
+                    line += word + " ";
+                } else {
+                    formattedText += line.trim() + "\n";
+                    line = word + " ";
+                }
+            }
+
+            formattedText += line.trim(); // Add the last line
+
+            resultTextArea.value = formattedText;
+        }
+    </script>
+</body>
+</html>
